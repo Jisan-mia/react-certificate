@@ -1,8 +1,10 @@
 
-import React, { useRef } from 'react';
+import React from 'react';
 
-const CertificateComponent = React.forwardRef((props, ref) => (
-  <div ref={ref} className='w-[900px]'>
+const CertificateComponent = React.forwardRef((props, ref) => {
+  const certificateData = props.certificateData
+  return (
+    <div ref={ref} className='w-[900px]'>
       <div className='font-Poppins aspect-auto border border-gray-400 relative overflow-hidden rounded'>
         <div className='relative'>
           <img src="/certificate-template.png" alt="Certificate Template" className='h-full w-full object-contain block' />
@@ -10,26 +12,23 @@ const CertificateComponent = React.forwardRef((props, ref) => (
 
         {/* student name */}
         <div className='absolute text-center top-[37%] left-[46%] translate-x-[-50%] translate-y-[-50%] m-auto max-w-[380px]'>
-            <h1 className='uppercase font-semibold text-2xl'>Jisan Mia</h1>
+            <h1 className='uppercase font-semibold text-2xl'>{certificateData?.name || '-'}</h1>
         </div>
 
         {/* course name */}
-        <h3 className='text-sm font-medium absolute text-center top-[48%] left-[46%] translate-x-[-50%] translate-y-[-50%] m-auto max-w-[380px] capitalize'>dOT fmCSA Supervisor Reasonable Suspension Signs and
-SymptomsDrug And Alcohol Training</h3>
+        <h3 className='text-sm font-medium absolute text-center top-[48%] left-[46%] translate-x-[-50%] translate-y-[-50%] m-auto max-w-[380px] capitalize'>{certificateData?.course_name || '-'}</h3>
 
         {/* course success detail */}
         <div className=' absolute  top-[65%] left-[46%] translate-x-[-50%] translate-y-[-50%] m-auto w-[550px]'>
           <p className='font-normal text-xs text-justify'>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh ipsum sit. Lorem
-ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-laoreet dolore magna aliquam erat volutpat. Ut wisi
+          {certificateData?.compilation_detail || '-'}
           </p>
         </div>
 
         {/* optional detail */}
         <div className='absolute  top-[75%] left-[46%] translate-x-[-50%] translate-y-[-50%] m-auto max-w-[580px]'>
           <h3 className='font-medium text-xl text-center'>
-          Fulfills the requirements of 49 CFR Part 382.603
+          {certificateData?.optional_detail || '-'}
           </h3>
         </div>
 
@@ -52,7 +51,7 @@ laoreet dolore magna aliquam erat volutpat. Ut wisi
 
             <div className="col-start-6 col-end-8 row-start-1 row-end-3 place-self-center">
               <div className='h-24 w-24 rounded-full ring-2 ring-red-800 p-2'>
-                <img src="/logo2.png" className='w-full h-contain object-contain' alt="" />
+                <img src={certificateData?.company_logo || '/logo1.png'} className='w-full h-contain object-contain' alt="" />
               </div>
             </div>
 
@@ -61,20 +60,21 @@ laoreet dolore magna aliquam erat volutpat. Ut wisi
                 <h3 className='font-semibold text-sm capitalize'>
                 Compilation 
                 </h3>
-                <p className='font-medium text-sm capitalize'>date: 01/01/2022</p>
+                <p className='font-medium text-sm capitalize'>date: {certificateData?.compilation_date || '-'}</p>
               </div>
             </div>
             <div className="col-start-10 col-end-13 row-start-2 row-end-3 text-center whitespace-nowrap place-items-center place-self-center">
               <p className='font-semibold text-sm'>
-                Credential ID : #3423422
+                Credential ID : {certificateData?.credential_id || '-'}
               </p>
             </div>
           </div>
         </footer>
 
       </div>
-  </div>
-));
+    </div>
+  )
+});
 
 
 export default CertificateComponent
