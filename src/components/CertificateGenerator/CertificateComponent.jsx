@@ -2,10 +2,10 @@
 import React, { useRef } from 'react';
 
 const CertificateComponent = React.forwardRef((props, ref) => (
-  <div ref={ref}>
-      <div className='font-Poppins aspect-auto w-[900px] border border-gray-400 relative overflow-hidden rounded'>
+  <div ref={ref} className='w-[900px]'>
+      <div className='font-Poppins aspect-auto border border-gray-400 relative overflow-hidden rounded'>
         <div className='relative'>
-          <img src="./certificate-template.png" alt="Certificate Template" className='h-full w-full object-contain block' />
+          <img src="/certificate-template.png" alt="Certificate Template" className='h-full w-full object-contain block' />
         </div>
 
         {/* student name */}
@@ -51,8 +51,8 @@ laoreet dolore magna aliquam erat volutpat. Ut wisi
             </div>
 
             <div className="col-start-6 col-end-8 row-start-1 row-end-3 place-self-center">
-              <div className='h-24 w-24 rounded-full border border-red-800'>
-
+              <div className='h-24 w-24 rounded-full ring-2 ring-red-800 p-2'>
+                <img src="/logo2.png" className='w-full h-contain object-contain' alt="" />
               </div>
             </div>
 
