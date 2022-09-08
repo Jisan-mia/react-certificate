@@ -34,9 +34,41 @@ laoreet dolore magna aliquam erat volutpat. Ut wisi
         </div>
 
         {/* footer section including signature, compilation date, credential id and website url */}
-        <footer className='absolute top-[85%] left-[50%] translate-x-[-50%] translate-y-[-50%] m-auto w-[740px] bg-fuchsia-300'>
-          <div>
+        <footer className='absolute top-[88%] left-[50%] translate-x-[-50%] translate-y-[-50%] m-auto w-[740px] '>
+          <div className='grid grid-cols-12 grid-rows-2'>
             
+            <div className="col-start-1 col-end-4 row-start-1 row-end-2">
+              <div className='flex items-center justify-center flex-col gap-1'>
+                <h3 className='font-semibold text-sm capitalize'>
+                  Supervisor Solutions
+                </h3>
+                <p className='font-medium text-[10px] capitalize'>President & Founder</p>
+              </div>
+            </div>
+
+            <div className="col-start-1 col-end-4 row-start-2 row-end-3 place-self-center">
+              <a className='font-semibold text-sm' target={'_blank'} href="http://supervisorsolutions.com/">www.supervisorsolutions.com</a>
+            </div>
+
+            <div className="col-start-6 col-end-8 row-start-1 row-end-3 place-self-center">
+              <div className='h-24 w-24 rounded-full border border-red-800'>
+
+              </div>
+            </div>
+
+            <div className="col-start-10 col-end-13 row-start-1 row-end-2">
+              <div className='flex items-center justify-center flex-col'>
+                <h3 className='font-semibold text-sm capitalize'>
+                Compilation 
+                </h3>
+                <p className='font-medium text-sm capitalize'>date: 01/01/2022</p>
+              </div>
+            </div>
+            <div className="col-start-10 col-end-13 row-start-2 row-end-3 text-center whitespace-nowrap place-items-center place-self-center">
+              <p className='font-semibold text-sm'>
+                Credential ID : #3423422
+              </p>
+            </div>
           </div>
         </footer>
 
