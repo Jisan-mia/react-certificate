@@ -4,7 +4,7 @@ import React from 'react';
 const CertificateComponent = React.forwardRef((props, ref) => {
   const certificateData = props.certificateData
   return (
-    <div ref={ref} className='w-[900px]'>
+    <div id='node' ref={ref} className='w-[900px]'>
       <div className='font-Poppins aspect-auto border border-gray-400 relative overflow-hidden rounded'>
         <div className='relative'>
           <img src="/certificate-template.png" alt="Certificate Template" className='h-full w-full object-contain block' />

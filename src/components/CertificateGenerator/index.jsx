@@ -1,10 +1,16 @@
 import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
 import React, { useRef } from 'react';
 import CertificateComponent from './CertificateComponent';
+import jsPDF from 'jspdf';
+import * as htmlToImage from 'html-to-image';
+
+const pxToMm = (px) => {
+  return Math.floor(px/document.getElementById('myMm').offsetHeight);
+};
 
 
 const CertificateGenerator = () => {
-  const componentRef = useRef();
+  const componentRef = useRef(null);
 
   const certificateData = {
     name: 'Jisan Mia',
@@ -15,6 +21,46 @@ const CertificateGenerator = () => {
     credential_id: '#234234',
     company_logo: '/logo2.png'
   }
+
+  const handleExportPdf = () => exportComponentAsPDF(componentRef, {
+    fileName: 'Certificate',
+    html2CanvasOptions: {
+      width: 1000,
+      backgroundColor: 'blue',
+      scale: 2
+   },
+    pdfOptions: {
+      // x: 5,
+      // y: 5,
+      w: 1000,
+      h: 600,
+      unit: "px",
+      // orientation: 'l',
+      // pdfFormat: 'letter'
+    }
+  })
+  console.log(componentRef.current)
+
+  const handlePdfClick= () => {
+    let domElement = componentRef.current;
+    const a4WidthMm = 210;
+    const domHeightMm = pxToMm(document.getElementById('node').offsetHeight);
+    htmlToImage.toPng(domElement)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: [domHeightMm+16, a4WidthMm],
+        });
+        pdf.addImage(dataUrl, 'PNG', 0, 0);
+        pdf.save("download1.pdf");
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+  }
+
   return (
     <React.Fragment>
       <div className='grid gap-4 mt-4'>
@@ -22,14 +68,17 @@ const CertificateGenerator = () => {
           <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' onClick={() => exportComponentAsJPEG(componentRef)}>
             Export As JPEG
           </button>
-          <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' onClick={() => exportComponentAsPDF(componentRef)}>
+          <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' 
+            onClick={handlePdfClick}>
             Export As PDF
           </button>
           <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' onClick={() => exportComponentAsPNG(componentRef)}>
             Export As PNG
           </button>
         </div>
-        <CertificateComponent ref={componentRef} certificateData={certificateData}/>
+
+
+          <CertificateComponent ref={componentRef} certificateData={certificateData}/>
       </div>
       
     </React.Fragment>
