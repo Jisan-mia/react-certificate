@@ -22,23 +22,29 @@ const CertificateGenerator = () => {
     company_logo: '/logo2.png'
   }
 
-  const handleExportPdf = () => exportComponentAsPDF(componentRef, {
-    fileName: 'Certificate',
-    html2CanvasOptions: {
-      width: 1000,
-      backgroundColor: 'blue',
-      scale: 2
-   },
-    pdfOptions: {
-      // x: 5,
-      // y: 5,
-      // w: 1000,
-      // h: 600,
-      unit: "px",
-      // orientation: 'l',
-      // pdfFormat: 'letter'
-    }
-  })
+  const handleExportPdf = () => {
+
+    const a4WidthMm = 230;
+    const domHeightMm = pxToMm(document.getElementById('node').offsetHeight);
+
+    exportComponentAsPDF(componentRef, {
+      fileName: 'Certificate',
+      html2CanvasOptions: {
+        width: 1000,
+        backgroundColor: 'blue',
+        scale: 2
+    },
+      pdfOptions: {
+        x: 0,
+        y: 0,
+        // w: 1000,
+        // h: 600,
+        unit: "mm",
+        // orientation: 'l',
+        pdfFormat: [domHeightMm+10, a4WidthMm]
+      }
+    })
+  }
   console.log(componentRef.current)
 
   const handlePdfClick= () => {
@@ -72,7 +78,7 @@ const CertificateGenerator = () => {
             onClick={handlePdfClick}>
             Export As PDF
           </button>
-          <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' onClick={() => exportComponentAsPNG(componentRef)}>
+          <button className='px-2 py-1 border rounded bg-emerald-600 text-lime-50 mr-2' onClick={() => handleExportPdf(componentRef)}>
             Export As PNG
           </button>
         </div>
