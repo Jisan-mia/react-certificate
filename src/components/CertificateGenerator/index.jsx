@@ -4,6 +4,7 @@ import CertificateComponent from './CertificateComponent';
 import jsPDF from 'jspdf';
 import * as htmlToImage from 'html-to-image';
 
+// convert pixel unit value to milometer
 const pxToMm = (px) => {
   return Math.floor(px/document.getElementById('myMm').offsetHeight);
 };
@@ -12,8 +13,9 @@ const pxToMm = (px) => {
 const CertificateGenerator = () => {
   const componentRef = useRef(null);
 
+  // data for certificate
   const certificateData = {
-    name: 'Shakil Mia',
+    name: 'Hugh Jackman',
     course_name: "DOT FMCSA Supervisor Reasonable Suspension Signs and SymptomsDrug And Alcohol Training",
     compilation_detail: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh ipsum sit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi",
     optional_detail: "Fulfills the requirements of 49 CFR Part 382.603",
@@ -40,6 +42,7 @@ const CertificateGenerator = () => {
   //   })
   // }
 
+  // function to print pdf
   const handlePdfClick= () => {
     let domElement = componentRef.current;
     const a4WidthMm = 230;
