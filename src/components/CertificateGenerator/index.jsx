@@ -13,7 +13,7 @@ const CertificateGenerator = () => {
   const componentRef = useRef(null);
 
   const certificateData = {
-    name: 'Jisan Mia',
+    name: 'Shakil Mia',
     course_name: "DOT FMCSA Supervisor Reasonable Suspension Signs and SymptomsDrug And Alcohol Training",
     compilation_detail: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh ipsum sit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi",
     optional_detail: "Fulfills the requirements of 49 CFR Part 382.603",
@@ -32,8 +32,8 @@ const CertificateGenerator = () => {
     pdfOptions: {
       // x: 5,
       // y: 5,
-      w: 1000,
-      h: 600,
+      // w: 1000,
+      // h: 600,
       unit: "px",
       // orientation: 'l',
       // pdfFormat: 'letter'
@@ -43,7 +43,7 @@ const CertificateGenerator = () => {
 
   const handlePdfClick= () => {
     let domElement = componentRef.current;
-    const a4WidthMm = 210;
+    const a4WidthMm = 230;
     const domHeightMm = pxToMm(document.getElementById('node').offsetHeight);
     htmlToImage.toPng(domElement)
       .then(function (dataUrl) {
@@ -51,7 +51,7 @@ const CertificateGenerator = () => {
         const pdf = new jsPDF({
           orientation: 'landscape',
           unit: 'mm',
-          format: [domHeightMm+16, a4WidthMm],
+          format: [domHeightMm+10, a4WidthMm],
         });
         pdf.addImage(dataUrl, 'PNG', 0, 0);
         pdf.save("download1.pdf");
@@ -77,6 +77,7 @@ const CertificateGenerator = () => {
           </button>
         </div>
 
+        <div id="myMm" style={{height: "1mm"}} />
 
           <CertificateComponent ref={componentRef} certificateData={certificateData}/>
       </div>
